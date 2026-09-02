@@ -71,7 +71,7 @@ window.APP_SIZE    = '108MB';
   .app{background:#fff;border:2px solid var(--ink);border-radius:10px;box-shadow:10px 10px 0 var(--ink);overflow:hidden}
   .app .bar{display:flex;align-items:center;gap:8px;padding:11px 14px;border-bottom:2px solid var(--ink);background:var(--cream)}
   .app .bar i{width:12px;height:12px;border-radius:50%;border:2px solid var(--ink);display:block}
-  .app .bar .name{flex:1;font-weight:800;font-size:14px;text-align:center}
+  .app .bar .name{flex:1;font-weight:800;font-size:14px;text-align:left}
   .app .body{padding:18px}
   .app h4{margin:0 0 3px;font-size:20px;font-weight:900}
   .app .small{margin:0 0 14px;font-size:14px;font-weight:500;color:#555}
@@ -85,7 +85,6 @@ window.APP_SIZE    = '108MB';
   section{padding:72px 0;border-bottom:2px solid var(--ink)}
   .band-yellow{background:var(--yellow)}
   .band-blue{background:var(--blue)}
-  .band-teal{background:var(--teal);color:var(--ink)}
   h2{font-size:clamp(30px,4.2vw,44px);font-weight:900;letter-spacing:-.03em;line-height:1.1;margin:0 0 10px}
   .sub{font-size:18px;font-weight:500;margin:0 0 38px;max-width:50ch}
 
@@ -128,10 +127,17 @@ window.APP_SIZE    = '108MB';
   details p{margin:0;padding:0 18px 16px;font-size:16px;font-weight:500;border-top:2px solid var(--ink);padding-top:14px}
 
   /* close */
-  .close{text-align:center}
-  .close h2{margin-bottom:6px}
-  .close .sub{margin:0 auto 30px;color:rgba(0,0,0,.7);font-weight:600}
-  .close .meta{display:block;margin-top:16px;color:rgba(0,0,0,.62);font-weight:600}
+
+  .tipline{margin:14px 0 0;font-size:15.5px;font-weight:600}
+  .tipline a{text-decoration:none;background:var(--yellow);border:2px solid var(--ink);border-radius:5px;padding:1px 8px;font-weight:800;box-shadow:2px 2px 0 var(--ink);display:inline-block}
+  .tipline a:hover{transform:translate(-1px,-1px);box-shadow:3px 3px 0 var(--ink)}
+
+  .coffee{background:var(--cream);border-bottom:none}
+  .coffee-card{background:var(--yellow);border:2px solid var(--ink);border-radius:10px;box-shadow:8px 8px 0 var(--ink);padding:30px 32px;display:flex;flex-wrap:wrap;gap:22px;align-items:center;justify-content:space-between}
+  .coffee-card h2{margin:0 0 6px;font-size:clamp(24px,3vw,32px)}
+  .coffee-card p{margin:0;font-size:17px;font-weight:500;max-width:52ch}
+  .coffee-btn{background:#fff;flex:none}
+  .cup{width:22px;height:22px;flex:none}
 
   footer{background:var(--ink);color:#fff;padding:30px 0;font-size:15px;font-weight:500}
   footer .wrap{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center}
@@ -179,6 +185,7 @@ window.APP_SIZE    = '108MB';
         <a class="btn yellow" id="dlBtn" href="#">⬇ הורדה ל‑Windows</a>
         <span class="meta" id="dlNote"></span>
       </div>
+      <p class="tipline">האפליקציה חינמית לגמרי. אם היא חסכה לך זמן, אפשר <a href="https://buymeacoffee.com/senditpls" target="_blank" rel="noopener">לקנות לי קפה</a></p>
       <div class="warnbox" id="warnbox">הקישור עדיין לא הוגדר — בדוק את שם הקובץ בהגדרות שבראש הדף.</div>
     </div>
 
@@ -270,12 +277,15 @@ window.APP_SIZE    = '108MB';
   </div>
 </section>
 
-<section class="band-teal close">
+<section class="coffee">
   <div class="wrap">
-    <h2>הגלריה הבאה כבר יכולה לצאת מכאן</h2>
-    <p class="sub" style="text-align:center">הורדה אחת, בלי חשבון ובלי כרטיס אשראי.</p>
-    <a class="btn" id="dlBtn2" href="#">⬇ הורדה ל‑Windows</a>
-    <span class="meta" id="dlNote2"></span>
+    <div class="coffee-card">
+      <div>
+        <h2>הכלי הזה חינמי, ונשאר חינמי</h2>
+        <p>אין מנוי, אין גרסת פרימיום ואין פרסומות. אם Senditpls חסך לך זמן מול לקוח, כוס קפה עוזרת לי להמשיך לפתח אותו.</p>
+      </div>
+      <a class="btn yellow coffee-btn" href="https://buymeacoffee.com/senditpls" target="_blank" rel="noopener"><svg class="cup" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 8h13v7a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V8Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M17 10h1.6a2.4 2.4 0 0 1 0 4.8H17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 2.5v2M12 2v2.6M16 2.8v1.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>קנה לי קפה</a>
+    </div>
   </div>
 </section>
 
@@ -291,8 +301,8 @@ window.APP_SIZE    = '108MB';
   var user=(window.GITHUB_USER||'').trim(), repo=(window.GITHUB_REPO||'').trim(), asset=(window.ASSET_NAME||'').trim();
   var ready=user&&repo&&asset&&user!=='YOUR-USERNAME';
   var note='גרסה '+(window.APP_VERSION||'1.0.0')+' · '+(window.APP_SIZE||'')+' · Windows 10/11';
-  var btns=[document.getElementById('dlBtn'),document.getElementById('dlBtn2')];
-  [document.getElementById('dlNote'),document.getElementById('dlNote2')].forEach(function(n){if(n)n.textContent=note;});
+  var btns=[document.getElementById('dlBtn')];
+  [document.getElementById('dlNote')].forEach(function(n){if(n)n.textContent=note;});
 
   if(!ready){
     document.getElementById('warnbox').style.display='block';
