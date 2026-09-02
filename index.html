@@ -100,18 +100,39 @@ window.APP_SIZE    = '108MB';
   .stp p{margin:0;font-size:16px;font-weight:500}
 
   /* features */
-  .feats{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-  .ft{border:2px solid var(--ink);border-radius:8px;padding:22px;box-shadow:5px 5px 0 var(--ink);background:#fff}
-  .ft:nth-child(1){background:var(--pink)}
-  .ft:nth-child(2){background:var(--yellow)}
-  .ft:nth-child(3){background:var(--lime)}
-  .ft:nth-child(4){background:var(--blue)}
-  .ft:nth-child(5){background:var(--orange)}
-  .ft:nth-child(6){background:#fff}
-  .ft .ico{font-size:26px;margin-bottom:8px}
-  .ft h3{margin:0 0 4px;font-size:19px;font-weight:900}
-  .ft p{margin:0;font-size:15.5px;font-weight:500}
+  /* showcase bands */
+  .show{border:3px solid var(--ink);border-radius:14px;overflow:hidden;box-shadow:8px 8px 0 var(--ink);margin-bottom:22px}
+  .show .in{display:grid;grid-template-columns:1fr 1fr;align-items:stretch;gap:0}
+  .show .txt{padding:34px;display:flex;flex-direction:column;justify-content:center}
+  .show .art{padding:28px;border-inline-start:3px solid var(--ink);display:flex;align-items:center;justify-content:center;min-height:210px}
+  .show.flip .in{direction:ltr}
+  .show.flip .txt,.show.flip .art{direction:rtl}
+  .show.flip .art{border-inline-start:0;border-inline-end:3px solid var(--ink)}
+  .show .step{display:inline-block;background:var(--ink);color:#fff;font-size:13px;font-weight:800;border-radius:999px;padding:3px 13px;margin-bottom:12px}
+  .show h3{margin:0 0 8px;font-size:clamp(24px,3vw,32px);font-weight:900;line-height:1.15}
+  .show p{margin:0;font-size:17px;font-weight:500;max-width:44ch}
+  .show.s1{background:var(--pink)} .show.s1 .art{background:#fff}
+  .show.s2{background:var(--lime)} .show.s2 .art{background:#fff}
+  .show.s3{background:var(--ink);color:#fff} .show.s3 .step{background:var(--yellow);color:var(--ink)}
+  .show.s3 p{color:rgba(255,255,255,.82)} .show.s3 .art{background:#fff}
 
+  /* art pieces */
+  .grow{display:flex;align-items:center;gap:9px;border:2.5px solid var(--ink);border-radius:7px;padding:9px 12px;font-size:13px;font-weight:800;background:#fff;margin-bottom:8px;width:100%;max-width:280px}
+  .grow .bar{flex:1;height:8px;border-radius:99px;background:var(--ink)}
+  .grow.dead{opacity:.4}
+  .grow.dead .bar{background:repeating-linear-gradient(90deg,var(--ink) 0 5px,transparent 5px 10px)}
+  .grow .tick{background:var(--lime);border:2px solid var(--ink);border-radius:999px;padding:1px 8px;font-size:11px}
+  .bubble{background:var(--lime);border:2.5px solid var(--ink);border-radius:12px 12px 12px 3px;padding:12px 14px;max-width:270px;font-size:14px;font-weight:700}
+  .bubble .chip{display:block;margin-top:9px;background:#fff;border:2px solid var(--ink);border-radius:6px;padding:7px 10px;font-size:12.5px;direction:ltr;font-weight:800}
+
+  /* compact strip */
+  .mini{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:26px}
+  .mrow{display:flex;align-items:center;gap:13px;border:3px solid var(--ink);border-radius:999px;padding:12px 20px;background:#fff;box-shadow:4px 4px 0 var(--ink)}
+  .mrow:nth-child(2){background:var(--blue)}
+  .mrow:nth-child(3){background:var(--yellow)}
+  .mrow svg{width:24px;height:24px;flex:none}
+  .mrow b{font-size:16px;font-weight:900;display:block}
+  .mrow span{font-size:13.5px;font-weight:500}
   .heads{margin-top:34px;background:var(--ink);color:#fff;border-radius:8px;padding:26px 28px;display:flex;gap:18px;align-items:flex-start}
   .heads .bang{flex:none;width:40px;height:40px;border-radius:50%;background:var(--yellow);color:var(--ink);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:24px}
   .heads h3{margin:0 0 5px;font-size:20px;font-weight:900}
@@ -147,7 +168,12 @@ window.APP_SIZE    = '108MB';
   @media (max-width:900px){
     .hero .wrap{grid-template-columns:1fr;gap:36px}
     .lead{max-width:none}
-    .steps,.feats{grid-template-columns:1fr}
+    .steps{grid-template-columns:1fr}
+    .show .in,.show.flip .in{grid-template-columns:1fr;direction:rtl}
+    .show .art{border-inline-start:0;border-inline-end:0;border-top:3px solid var(--ink);min-height:0;padding:22px}
+    .show.flip .art{border-inline-end:0;border-top:3px solid var(--ink)}
+    .show .txt{padding:26px 22px}
+    .mini{grid-template-columns:1fr}
     section{padding:54px 0}
     .app{box-shadow:6px 6px 0 var(--ink)}
   }
@@ -244,13 +270,75 @@ window.APP_SIZE    = '108MB';
   <div class="wrap">
     <h2>מה יש בפנים</h2>
     <p class="sub">כל מה שצריך כדי למסור עבודה, בלי מה שלא צריך.</p>
-    <div class="feats">
-      <div class="ft"><div class="ico">🗑️</div><h3>מחיקה אוטומטית</h3><p>ברגע שהלקוח סיים להוריד, הגלריה נמחקת מהמחשב שלך. אפשר לכבות בהגדרות.</p></div>
-      <div class="ft"><div class="ico">🔗</div><h3>קישור בלי סיסמה</h3><p>הלקוח לוחץ ורואה. הקוד בקישור אקראי וארוך, אז אי אפשר לנחש אותו.</p></div>
-      <div class="ft"><div class="ico">🗄️</div><h3>ארכיון</h3><p>סיימת עם לקוח? העבר לארכיון בקליק ימני. נשמר אצלך, והקישור מושבת.</p></div>
-      <div class="ft"><div class="ico">🌙</div><h3>מצב כהה</h3><p>בהיר או כהה, לפי מה שנוח לך. הבחירה נשמרת בין הפעלות.</p></div>
-      <div class="ft"><div class="ico">📱</div><h3>עובד בטלפון של הלקוח</h3><p>הגלריה נפתחת יפה גם במובייל, עם הורדה של הכל או של תמונה בודדת.</p></div>
-      <div class="ft"><div class="ico">🔒</div><h3>התמונות לא עוברות בענן</h3><p>אין שרת מתווך ואין חברה שמחזיקה את הקבצים שלך. הכל מהמחשב שלך ישירות ללקוח.</p></div>
+    <div class="show s1">
+      <div class="in">
+        <div class="txt">
+          <span class="step">מה שקורה אחרי המסירה</span>
+          <h3>הגלריה מוחקת את עצמה</h3>
+          <p>ברגע שהלקוח סיים להוריד את כל התמונות, הגלריה נמחקת מהמחשב שלך ועוברת ליומן המסירות. אפשר לכבות בהגדרות.</p>
+        </div>
+        <div class="art">
+          <div>
+            <div class="grow"><span>חתונה</span><span class="bar"></span><span class="tick">הורד</span></div>
+            <div class="grow dead"><span>בר מצווה</span><span class="bar"></span><span>נמחקה</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="show s2 flip">
+      <div class="in">
+        <div class="txt">
+          <span class="step">איך זה מגיע ללקוח</span>
+          <h3>קישור אחד בוואטסאפ</h3>
+          <p>בלי סיסמה, בלי הרשמה, בלי אפליקציה שהלקוח צריך להתקין. הקוד בקישור אקראי וארוך, אז אי אפשר לנחש אותו.</p>
+        </div>
+        <div class="art">
+          <div class="bubble">
+            התמונות מוכנות! 📸
+            <span class="chip">senditpls.link/g/9f3ad2</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="show s3">
+      <div class="in">
+        <div class="txt">
+          <span class="step">איפה יושבות התמונות</span>
+          <h3>שום דבר לא עובר בענן</h3>
+          <p>אין שרת מתווך ואין חברה שמחזיקה את הקבצים שלך. הכל יוצא מהמחשב שלך ישירות ללקוח.</p>
+        </div>
+        <div class="art">
+          <svg viewBox="0 0 300 140" width="100%" style="max-width:290px" fill="none" aria-hidden="true">
+            <rect x="8" y="44" width="78" height="56" rx="7" fill="#B4EF6C" stroke="#000" stroke-width="3"/>
+            <path d="M33 100v10h28v-10" stroke="#000" stroke-width="3" stroke-linejoin="round"/>
+            <rect x="238" y="38" width="52" height="76" rx="10" fill="#FF90E8" stroke="#000" stroke-width="3"/>
+            <path d="M255 106h18" stroke="#000" stroke-width="3" stroke-linecap="round"/>
+            <path d="M98 72h108" stroke="#000" stroke-width="3" stroke-linecap="round" stroke-dasharray="10 9"/>
+            <path d="M212 63l11 9-11 9" stroke="#000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <g opacity=".4">
+              <path d="M136 40a14 14 0 0 1 26-6 11 11 0 0 1 17 8 10 10 0 0 1-2 20h-38a13 13 0 0 1-3-22Z" fill="#fff" stroke="#000" stroke-width="3" stroke-linejoin="round"/>
+            </g>
+            <path d="M130 20l58 46" stroke="#000" stroke-width="4.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="mini">
+      <div class="mrow">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M3 7h18v3H3zM4.5 10v9.5h15V10M10 14h4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div><b>ארכיון</b><span>לעבודות שנמסרו</span></div>
+      </div>
+      <div class="mrow">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8 8 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+        <div><b>מצב כהה</b><span>בהיר או כהה, לבחירתך</span></div>
+      </div>
+      <div class="mrow">
+        <svg viewBox="0 0 24 24" fill="none"><rect x="6" y="2.5" width="12" height="19" rx="2.5" stroke="currentColor" stroke-width="2"/><path d="M10.5 18.5h3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <div><b>עובד במובייל</b><span>גם בטלפון של הלקוח</span></div>
+      </div>
     </div>
 
     <div class="heads">
